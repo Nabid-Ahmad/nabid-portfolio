@@ -87,7 +87,7 @@ a {
     width: 25px; height: 25px;
     border: 1.5px solid rgba(255, 51, 102, 0.4);
     box-shadow: 0 0 15px rgba(255, 51, 102, 0.2), inset 0 0 10px rgba(255, 51, 102, 0.1);
-    transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s, border-color 0.3s;
+    transition: left 0.15s ease-out, top 0.15s ease-out, width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s, border-color 0.3s;
 }
 .cursor-outline.hovering {
     width: 45px; height: 45px;

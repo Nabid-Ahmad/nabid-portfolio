@@ -64,10 +64,8 @@ if (cursorDot && cursorOutline && window.innerWidth > 1024) {
         cursorDot.style.left = `${posX}px`;
         cursorDot.style.top = `${posY}px`;
 
-        cursorOutline.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, { duration: 500, fill: "forwards" });
+        cursorOutline.style.left = `${posX}px`;
+        cursorOutline.style.top = `${posY}px`;
     });
 
     const hoverElements = document.querySelectorAll('a, button, .bento-box, .service-card-modern, .showcase-item');
