@@ -307,6 +307,7 @@ a {
     animation: morph 8s ease-in-out infinite;
     transition: all 1s ease-in-out;
     flex-shrink: 0;
+    margin-right: -4vw; /* Pushes the image further to the right */
 }
 
 .hero-img-box:hover {
@@ -820,6 +821,7 @@ input:focus, select:focus, textarea:focus {
     }
     .hero-img-box {
         width: 300px; height: 300px;
+        margin-right: 0;
     }
 
     .bento-grid {
