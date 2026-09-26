@@ -312,6 +312,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: -150px; /* Moves the image slightly up */
 }
 
 .hero-img-box:hover {
