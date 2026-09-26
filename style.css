@@ -1,16 +1,16 @@
 /* style.css - Complete Redesign */
 :root {
     /* Modern Color Palette */
-    --bg-base: #1A1C23; /* Darker blue-grey background from screenshot */
-    --bg-surface: #22252D;
-    --bg-surface-light: #2A2D37;
+    --bg-base: #060608;
+    --bg-surface: #121217;
+    --bg-surface-light: #1A1A22;
     --text-main: #F4F4F6;
-    --text-muted: #9CA3AF;
+    --text-muted: #A0A0AB;
     
     /* Neon Accents */
-    --accent-1: #84cc16; /* Bright Green */
-    --accent-2: #65a30d; /* Darker Green */
-    --accent-3: #bef264; /* Light Green */
+    --accent-1: #FF3366; /* Neon Pink */
+    --accent-2: #FF7733; /* Neon Orange */
+    --accent-3: #8C33FF; /* Neon Purple */
     
     /* Gradients */
     --primary-gradient: linear-gradient(135deg, var(--accent-1), var(--accent-2));
@@ -302,7 +302,7 @@ a {
     height: 360px;
     background: transparent;
     border: 3px solid var(--accent-1);
-    box-shadow: 0 0 40px rgba(132, 204, 22, 0.4), inset 0 0 40px rgba(132, 204, 22, 0.2);
+    box-shadow: 0 0 40px rgba(255, 51, 102, 0.4), inset 0 0 40px rgba(255, 51, 102, 0.2);
     border-radius: 50%;
     padding: 10px;
     transition: all 0.5s ease;
@@ -313,7 +313,7 @@ a {
 }
 
 .hero-img-box:hover {
-    box-shadow: 0 0 60px rgba(132, 204, 22, 0.6), inset 0 0 60px rgba(132, 204, 22, 0.3);
+    box-shadow: 0 0 60px rgba(255, 51, 102, 0.6), inset 0 0 60px rgba(255, 51, 102, 0.3);
 }
 
 .hero-img-box img {
@@ -381,7 +381,7 @@ a {
 .hero-socials a:hover {
     border-color: var(--accent-1);
     color: var(--accent-1);
-    background: rgba(132, 204, 22, 0.1);
+    background: rgba(255, 51, 102, 0.1);
 }
 
 .hero-location span {
