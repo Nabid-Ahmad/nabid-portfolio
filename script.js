@@ -48,8 +48,45 @@ const revealOptions = {
 
 const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
 revealElements.forEach((el, index) => {
-    // Add small stagger delay based on index for siblings to cascade
     el.style.transitionDelay = `${(index % 3) * 0.15}s`;
     revealObserver.observe(el);
 });
 
+// --- Custom Cursor ---
+const cursorDot = document.querySelector('.cursor-dot');
+const cursorOutline = document.querySelector('.cursor-outline');
+
+if (cursorDot && cursorOutline && window.innerWidth > 1024) {
+    window.addEventListener('mousemove', function(e) {
+        const posX = e.clientX;
+        const posY = e.clientY;
+
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+
+        cursorOutline.animate({
+            left: `${posX}px`,
+            top: `${posY}px`
+        }, { duration: 500, fill: "forwards" });
+    });
+
+    const hoverElements = document.querySelectorAll('a, button, .bento-box, .service-card-modern, .showcase-item');
+    hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursorOutline.classList.add('hovering');
+        });
+        el.addEventListener('mouseleave', () => {
+            cursorOutline.classList.remove('hovering');
+        });
+    });
+}
+
+// --- Initialize Vanilla Tilt 3D Effects ---
+if (typeof VanillaTilt !== 'undefined') {
+    VanillaTilt.init(document.querySelectorAll(".bento-box, .service-card-modern, .showcase-item"), {
+        max: 3,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.05,
+    });
+}
