@@ -13,6 +13,15 @@ const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-links a');
 
 window.addEventListener('scroll', () => {
+    // Scroll Progress Bar
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercentage = (scrollTop / scrollHeight) * 100;
+        progressBar.style.width = scrollPercentage + '%';
+    }
+
     let current = '';
     
     sections.forEach(section => {
@@ -86,5 +95,33 @@ if (typeof VanillaTilt !== 'undefined') {
         speed: 400,
         glare: true,
         "max-glare": 0.05,
+    });
+}
+
+// --- Theme Toggle Logic ---
+const themeToggleBtn = document.getElementById('theme-toggle');
+if (themeToggleBtn) {
+    const themeIcon = themeToggleBtn.querySelector('i');
+    let isLightMode = localStorage.getItem('theme') === 'light';
+
+    function updateTheme() {
+        if (isLightMode) {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeIcon.classList.remove('ph-sun');
+            themeIcon.classList.add('ph-moon');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            themeIcon.classList.remove('ph-moon');
+            themeIcon.classList.add('ph-sun');
+        }
+    }
+
+    // Initialize theme from storage
+    updateTheme();
+
+    themeToggleBtn.addEventListener('click', () => {
+        isLightMode = !isLightMode;
+        localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+        updateTheme();
     });
 }

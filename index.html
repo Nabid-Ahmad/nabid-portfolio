@@ -29,6 +29,10 @@
 
     <!-- Floating Glass Navbar -->
     <nav class="navbar">
+        <!-- Scroll Progress Line -->
+        <div class="scroll-progress-container">
+            <div class="scroll-progress-bar" id="scroll-progress"></div>
+        </div>
         <div class="nav-container">
             <a href="#" class="logo">
                 <div class="logo-circle"></div>
@@ -41,7 +45,12 @@
                 <a href="#portfolio">Work</a>
                 <a href="#contact">Contact</a>
             </div>
-            <a href="#contact" class="btn-glass">Let's Talk <i class="ph ph-arrow-right"></i></a>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                    <i class="ph ph-sun"></i>
+                </button>
+                <a href="#contact" class="btn-glass">Let's Talk <i class="ph ph-arrow-right"></i></a>
+            </div>
         </div>
     </nav>
 
@@ -57,10 +66,7 @@
                     Nabid Ahmad <span class="text-gradient">Zidan</span>
                 </h1>
                 <p class="hero-desc reveal">
-                    Building custom software — ERP, POS, CRM systems — and helping businesses go fully online with scalable web applications.
-                </p>
-                <p class="hero-quote reveal">
-                    "I help businesses replace chaos with custom software that saves time."
+                    I engineer high-performance web applications and robust enterprise solutions. Specializing in custom ERP, POS, and CRM systems, I help forward-thinking businesses automate complex workflows, scale operations, and accelerate digital growth.
                 </p>
                 
                 <div class="hero-actions reveal">
@@ -342,21 +348,41 @@
 
     <!-- Footer -->
     <footer class="footer-modern">
+        <!-- <div class="footer-cta">
+            <h2 class="reveal">Have an idea? Let's build it.</h2>
+            <a href="#contact" class="btn-primary reveal">Get in Touch <i class="ph ph-paper-plane-right"></i></a>
+        </div> -->
+        
         <div class="footer-content">
             <div class="f-brand">
                 <a href="#" class="logo">
-                    Nabid<span class="text-gradient">.dev</span>
+                    <div class="logo-circle"></div>
+                    NABID<span class="text-gradient"></span>
                 </a>
-                <p>Crafting digital excellence from Dhaka, BD.</p>
+                <p>Architecting digital excellence and scalable enterprise solutions from Dhaka, BD.</p>
             </div>
-            <div class="f-socials">
-                <a href="#"><i class="ph-fill ph-github-logo"></i></a>
-                <a href="#"><i class="ph-fill ph-linkedin-logo"></i></a>
-                <a href="#"><i class="ph-fill ph-twitter-logo"></i></a>
+            
+            <div class="f-links">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#portfolio">Work</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <div class="f-social-section">
+                <h3>Connect</h3>
+                <div class="f-socials">
+                    <a href="https://github.com/Nabid-Ahmad/"><i class="ph ph-github-logo"></i></a>
+                    <a href="www.linkedin.com/in/nabid-ahmad"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#"><i class="ph ph-twitter-logo"></i></a>
+                    <a href="#"><i class="ph ph-envelope-simple"></i></a>
+                </div>
             </div>
         </div>
-        <div class="f-bottom">
-            <p>&copy; 2026 Nabid Ahmad. All rights reserved.</p>
+        
+        <div class="f-bottom" style="margin-right: 150px;">
+            <p>&copy; 2026 Nabid Ahmad Zidan</p>
         </div>
     </footer>
 
