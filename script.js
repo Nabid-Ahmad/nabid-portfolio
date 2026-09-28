@@ -125,3 +125,57 @@ if (themeToggleBtn) {
         updateTheme();
     });
 }
+
+// --- Project Details Modal Logic ---
+const modal = document.getElementById('projectModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const showcaseItems = document.querySelectorAll('.showcase-item');
+
+if (modal && closeModalBtn) {
+    // Open Modal
+    showcaseItems.forEach(item => {
+        // Find the view button and the item image as click triggers
+        const triggers = item.querySelectorAll('.view-btn, .item-img');
+        
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Get data from the clicked item
+                const imgSrc = item.querySelector('img').src;
+                const cat = item.querySelector('.item-cat').textContent;
+                const year = item.querySelector('.item-year').textContent;
+                const title = item.querySelector('h3').textContent;
+                const desc = item.querySelector('p').textContent;
+                const tagsHTML = item.querySelector('.project-tags').innerHTML;
+                
+                // Inject into modal
+                document.getElementById('modalImg').src = imgSrc;
+                document.getElementById('modalCat').textContent = cat;
+                document.getElementById('modalYear').textContent = year;
+                document.getElementById('modalTitle').textContent = title;
+                document.getElementById('modalDesc').textContent = desc;
+                document.getElementById('modalTags').innerHTML = tagsHTML;
+                
+                // Show modal
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
+        });
+    });
+
+    // Close Modal
+    const closeModal = () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    closeModalBtn.addEventListener('click', closeModal);
+
+    // Close on outside click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+}
