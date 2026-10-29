@@ -1,127 +1,162 @@
-// script.js
+// script.js - Interactive Controls & Theme Management
 
-// Navbar scrolled effect
-window.addEventListener("scroll", function() {
-    let navbar = document.querySelector(".navbar");
-    if (navbar) {
-        navbar.classList.toggle("scrolled", window.scrollY > 50);
+document.addEventListener('DOMContentLoaded', () => {
+    // ==========================================================================
+    // 1. Theme Toggle Icon Sync
+    // ==========================================================================
+    const isLightOnLoad = document.documentElement.getAttribute('data-theme') === 'light';
+    const initialIcon = document.querySelector('#theme-toggle i');
+    if (initialIcon) {
+        initialIcon.className = isLightOnLoad ? 'ph ph-moon' : 'ph ph-sun';
     }
-});
 
-// Update active link on scroll
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-links a');
+    // ==========================================================================
+    // 2. Mobile Navigation Toggle
+    // ==========================================================================
+    const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+    const navLinksContainer = document.getElementById('nav-links');
 
-window.addEventListener('scroll', () => {
-    // Scroll Progress Bar
+    if (mobileToggleBtn && navLinksContainer) {
+        mobileToggleBtn.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('open');
+            const icon = mobileToggleBtn.querySelector('i');
+            if (icon) {
+                if (navLinksContainer.classList.contains('open')) {
+                    icon.className = 'ph ph-x';
+                } else {
+                    icon.className = 'ph ph-list';
+                }
+            }
+        });
+
+        // Close mobile menu when a nav link is clicked
+        navLinksContainer.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinksContainer.classList.remove('open');
+                const icon = mobileToggleBtn.querySelector('i');
+                if (icon) icon.className = 'ph ph-list';
+            });
+        });
+    }
+
+    // ==========================================================================
+    // 3. Scroll Progress & Sticky Navbar Effect
+    // ==========================================================================
+    const navbar = document.getElementById('navbar');
     const progressBar = document.getElementById('scroll-progress');
-    if (progressBar) {
-        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrollPercentage = (scrollTop / scrollHeight) * 100;
-        progressBar.style.width = scrollPercentage + '%';
-    }
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
 
-    let current = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (scrollY >= (sectionTop - 250)) {
-            current = section.getAttribute('id');
+    function handleScroll() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+        // Sticky Navbar shadow
+        if (navbar) {
+            navbar.classList.toggle('scrolled', scrollTop > 40);
         }
-    });
 
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').includes(current) && current !== '') {
-            link.classList.add('active');
+        // Scroll Progress Bar
+        if (progressBar && docHeight > 0) {
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
         }
-    });
-});
 
-// Scroll Reveal Animation
-const revealElements = document.querySelectorAll('.reveal');
-const revealCallback = (entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target);
-        }
-    });
-};
-
-const revealOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px"
-};
-
-const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
-revealElements.forEach((el, index) => {
-    el.style.transitionDelay = `${(index % 3) * 0.15}s`;
-    revealObserver.observe(el);
-});
-
-// --- Custom Cursor ---
-const cursorDot = document.querySelector('.cursor-dot');
-const cursorOutline = document.querySelector('.cursor-outline');
-
-if (cursorDot && cursorOutline && window.innerWidth > 1024) {
-    window.addEventListener('mousemove', function(e) {
-        const posX = e.clientX;
-        const posY = e.clientY;
-
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
-
-        cursorOutline.style.left = `${posX}px`;
-        cursorOutline.style.top = `${posY}px`;
-    });
-
-    const hoverElements = document.querySelectorAll('a, button, .bento-box, .service-card-modern, .showcase-item');
-    hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursorOutline.classList.add('hovering');
+        // Active Navigation Link Highlighting
+        let currentSectionId = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 140;
+            const sectionHeight = section.offsetHeight;
+            if (scrollTop >= sectionTop && scrollTop < sectionTop + sectionHeight) {
+                currentSectionId = section.getAttribute('id');
+            }
         });
-        el.addEventListener('mouseleave', () => {
-            cursorOutline.classList.remove('hovering');
-        });
-    });
-}
 
-// --- Initialize Vanilla Tilt 3D Effects ---
-if (typeof VanillaTilt !== 'undefined') {
-    VanillaTilt.init(document.querySelectorAll(".bento-box, .service-card-modern, .showcase-item"), {
-        max: 3,
-        speed: 400,
-        glare: true,
-        "max-glare": 0.05,
-    });
-}
-
-// --- Theme Toggle Logic ---
-const themeToggleBtn = document.getElementById('theme-toggle');
-if (themeToggleBtn) {
-    const themeIcon = themeToggleBtn.querySelector('i');
-    let isLightMode = localStorage.getItem('theme') === 'light';
-
-    function updateTheme() {
-        if (isLightMode) {
-            document.documentElement.setAttribute('data-theme', 'light');
-            themeIcon.classList.remove('ph-sun');
-            themeIcon.classList.add('ph-moon');
-        } else {
-            document.documentElement.removeAttribute('data-theme');
-            themeIcon.classList.remove('ph-moon');
-            themeIcon.classList.add('ph-sun');
+        if (currentSectionId) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
         }
     }
 
-    // Initialize theme from storage
-    updateTheme();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
 
-    themeToggleBtn.addEventListener('click', () => {
-        isLightMode = !isLightMode;
-        localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-        updateTheme();
-    });
-}
+    // ==========================================================================
+    // 4. Smooth Scroll Reveal Animations
+    // ==========================================================================
+    const revealElements = document.querySelectorAll('.reveal');
+
+    function triggerReveals() {
+        const windowHeight = window.innerHeight;
+        revealElements.forEach((el, index) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= windowHeight * 0.92) {
+                el.style.transitionDelay = `${(index % 3) * 0.08}s`;
+                el.classList.add('active');
+            }
+        });
+    }
+
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.05,
+            rootMargin: '100px 0px 50px 0px'
+        });
+
+        revealElements.forEach((el, index) => {
+            el.style.transitionDelay = `${(index % 3) * 0.08}s`;
+            revealObserver.observe(el);
+        });
+    }
+
+    // Trigger initial check immediately
+    triggerReveals();
+    window.addEventListener('scroll', triggerReveals, { passive: true });
+
+    // ==========================================================================
+    // 5. Interactive Custom Cursor
+    // ==========================================================================
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-outline');
+
+    if (cursorDot && cursorOutline && window.innerWidth > 1024) {
+        window.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            cursorDot.style.left = `${clientX}px`;
+            cursorDot.style.top = `${clientY}px`;
+
+            cursorOutline.style.left = `${clientX}px`;
+            cursorOutline.style.top = `${clientY}px`;
+        });
+
+        const interactiveElements = document.querySelectorAll('a, button, input, select, textarea, .bento-card, .pillar-card, .method-card, .case-card, .endorsement-card, .tech-item');
+        interactiveElements.forEach(item => {
+            item.addEventListener('mouseenter', () => cursorOutline.classList.add('hovering'));
+            item.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovering'));
+        });
+    }
+
+    // ==========================================================================
+    // 6. Vanilla Tilt 3D Hover Effects
+    // ==========================================================================
+    if (typeof VanillaTilt !== 'undefined' && window.innerWidth > 1024) {
+        VanillaTilt.init(document.querySelectorAll('.bento-card, .pillar-card, .method-card, .endorsement-card'), {
+            max: 5,
+            speed: 400,
+            glare: true,
+            'max-glare': 0.08,
+            scale: 1.01
+        });
+    }
+});

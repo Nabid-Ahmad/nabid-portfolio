@@ -3,53 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nabid Ahmad | Premium Web Developer</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Nabid Ahmad Zidan — Principal Software Architect & Full-Stack Engineer</title>
+    <meta name="description" content="Portfolio of Nabid Ahmad Zidan - Principal Software Architect specializing in high-throughput transactional systems, enterprise resource planning (ERP), and scalable cloud infrastructure.">
+    
     <!-- Google Fonts: Outfit & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Phosphor Icons for modern sleek icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Instant Theme Detection & Global Toggle Function -->
+    <script>
+        function togglePortfolioTheme() {
+            var html = document.documentElement;
+            var isCurrentlyLight = html.getAttribute('data-theme') === 'light';
+            var newTheme = isCurrentlyLight ? 'dark' : 'light';
+            if (newTheme === 'light') {
+                html.setAttribute('data-theme', 'light');
+            } else {
+                html.removeAttribute('data-theme');
+            }
+            try {
+                localStorage.setItem('nabid_portfolio_theme', newTheme);
+            } catch(e) {}
+            var icon = document.querySelector('#theme-toggle i');
+            if (icon) {
+                icon.className = newTheme === 'light' ? 'ph ph-moon' : 'ph ph-sun';
+            }
+        }
+
+        (function() {
+            try {
+                var saved = localStorage.getItem('nabid_portfolio_theme');
+                if (saved === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch(e) {}
+        })();
+    </script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Custom Cursor -->
+    <!-- Custom Interactive Cursor -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
-    <!-- Background Grain Overlay -->
+    <!-- Background Ambient Glow & Grain Overlay -->
     <div class="noise-overlay"></div>
-
-    <!-- Background Mesh Gradients -->
     <div class="bg-mesh">
         <div class="mesh-blob blob-1"></div>
         <div class="mesh-blob blob-2"></div>
         <div class="mesh-blob blob-3"></div>
     </div>
 
-    <!-- Floating Glass Navbar -->
-    <nav class="navbar">
-        <!-- Scroll Progress Line -->
+    <!-- Floating Sleek Navbar -->
+    <nav class="navbar" id="navbar">
         <div class="scroll-progress-container">
             <div class="scroll-progress-bar" id="scroll-progress"></div>
         </div>
         <div class="nav-container">
-            <a href="#" class="logo">
-                <div class="logo-circle"></div>
-                NABID<span class="text-gradient"></span>
+            <a href="#home" class="logo">
+                <div class="logo-icon-box">
+                    <i class="ph-bold ph-brackets-curly"></i>
+                </div>
+                <div class="logo-text-group">
+                    <span class="logo-title">NABID AHMAD</span>
+                    <span class="logo-subtitle">SYSTEM ARCHITECT</span>
+                </div>
             </a>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#services">Services</a>
-                <a href="#portfolio">Work</a>
-                <a href="#contact">Contact</a>
+
+            <div class="nav-links" id="nav-links">
+                <a href="#home" class="active">Overview</a>
+                <a href="#philosophy">Philosophy</a>
+                <a href="#pillars">Pillars</a>
+                <a href="#methodology">Methodology</a>
+                <a href="#case-studies">Case Studies</a>
+                <a href="#experience">Experience</a>
+                <a href="#endorsements">Endorsements</a>
             </div>
+
             <div class="nav-actions">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                <button class="theme-toggle" id="theme-toggle" onclick="togglePortfolioTheme()" aria-label="Toggle Dark and Light Mode" title="Toggle Theme">
                     <i class="ph ph-sun"></i>
                 </button>
-                <a href="#contact" class="btn-glass">Let's Talk <i class="ph ph-arrow-right"></i></a>
+                <a href="#contact" class="btn-nav-cta">
+                    <span>Schedule Call</span>
+                    <i class="ph-bold ph-arrow-up-right"></i>
+                </a>
+                <button class="mobile-toggle-btn" id="mobile-toggle-btn" aria-label="Open Navigation Menu">
+                    <i class="ph ph-list"></i>
+                </button>
             </div>
         </div>
     </nav>
@@ -57,303 +104,786 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge reveal">
-                    <span class="pulse-dot"></span> Available for new opportunities
+            <div class="hero-left">
+                <!-- Status Pill Badge -->
+                <div class="hero-status-pill reveal">
+                    <span class="pulse-dot"></span>
+                    <span>Available for Senior / Lead / Principal Architecture & Engineering Roles</span>
                 </div>
-                <div class="hero-subtitle reveal">FULL STACK DEVELOPER</div>
+
+                <!-- Main Hero Headline -->
                 <h1 class="hero-title reveal">
-                    Nabid Ahmad <span class="text-gradient">Zidan</span>
+                    Crafting Resilient Digital <br>
+                    Engines & High-Scale <br>
+                    Systems — <span class="gradient-text">Nabid Ahmad Zidan</span>
                 </h1>
+
+                <!-- Subtitle / Bio -->
                 <p class="hero-desc reveal">
-                    I engineer high-performance web applications and robust enterprise solutions. Specializing in custom ERP, POS, and CRM systems, I help forward-thinking businesses automate complex workflows, scale operations, and accelerate digital growth.
+                    Architecting & operating large-scale distributed systems with high availability, fault tolerance, and low latency. Specializing in high-throughput transactional systems, enterprise resource planning, and scalable cloud infrastructure.
                 </p>
-                
+
+                <!-- Hero Action Buttons -->
                 <div class="hero-actions reveal">
-                    <a href="#portfolio" class="btn-primary">View My Work</a>
-                    <a href="#contact" class="btn-secondary">Let's Work Together</a>
+                    <a href="#case-studies" class="btn-primary-glow">
+                        <span>Explore Architecture Systems</span>
+                        <i class="ph-bold ph-arrow-up-right"></i>
+                    </a>
+                    <a href="#contact" class="btn-secondary-glass">
+                        <i class="ph ph-calendar-check"></i>
+                        <span>Schedule Architecture Call</span>
+                    </a>
                 </div>
 
-                <div class="hero-socials reveal">
-                    <a href="#"><i class="ph ph-github-logo"></i></a>
-                    <a href="#"><i class="ph ph-envelope-simple"></i></a>
-                    <a href="#"><i class="ph ph-instagram-logo"></i></a>
-                    <a href="#"><i class="ph ph-linkedin-logo"></i></a>
-                </div>
-
-
-            </div>
-            
-            <div class="hero-visual reveal">
-                <div class="hero-img-box">
-                    <!-- Orbital Icons -->
-                    <div class="orbital-icons">
-                        <div class="orbit-icon icon-1"><i class="ph ph-code"></i></div>
-                        <div class="orbit-icon icon-2"><i class="ph ph-database"></i></div>
-                        <div class="orbit-icon icon-3"><i class="ph ph-terminal-window"></i></div>
+                <!-- Key Metrics & Proof Stats Bar -->
+                <div class="hero-stats-row reveal">
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Years Experience</div>
                     </div>
-                    <img src="profile.png" alt="Nabid Ahmad">
+                    <div class="stat-separator"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">$4.8M+</div>
+                        <div class="stat-label">Business Impact</div>
+                    </div>
+                    <div class="stat-separator"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">99.98%</div>
+                        <div class="stat-label">Uptime SLA</div>
+                    </div>
+                    <div class="stat-separator"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">&lt;120ms</div>
+                        <div class="stat-label">Latency P99</div>
+                    </div>
+                </div>
+
+                <!-- Social Connect Links -->
+                <div class="hero-social-strip reveal">
+                    <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub" class="social-link" title="GitHub"><i class="ph ph-github-logo"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-link" title="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="mailto:nabidahmad.zidan@gmail.com" aria-label="Email" class="social-link" title="Email"><i class="ph ph-envelope-simple"></i></a>
+                    <a href="#philosophy" aria-label="Tech Arsenal" class="social-link" title="Technical Arsenal"><i class="ph ph-terminal-window"></i></a>
+                </div>
+            </div>
+
+            <!-- Hero Right: High-Fidelity Profile Showcase -->
+            <div class="hero-right reveal">
+                <div class="profile-card-wrapper">
+                    <!-- Concentric Glow Rings -->
+                    <div class="profile-orbit-ring ring-outer"></div>
+                    <div class="profile-orbit-ring ring-middle"></div>
+                    <div class="profile-orbit-ring ring-inner"></div>
+
+                    <!-- Profile Container Frame -->
+                    <div class="profile-photo-frame">
+                        <img src="profile.png" alt="Nabid Ahmad Zidan - System Architect" class="profile-img">
+                        <div class="photo-overlay-gradient"></div>
+                    </div>
+
+                    <!-- Floating Badges -->
+                    <div class="floating-badge badge-role">
+                        <span class="badge-indicator"></span>
+                        <div class="badge-content">
+                            <span class="badge-title">System Architect</span>
+                            <span class="badge-sub">High-Scale Platforms</span>
+                        </div>
+                    </div>
+
+                    <div class="floating-badge badge-location">
+                        <i class="ph-fill ph-map-pin"></i>
+                        <span>Dhaka, Bangladesh</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Client Marquee -->
-        <div class="client-marquee reveal">
-            <div class="marquee-content">
-                <span><i class="ph-fill ph-check-circle"></i> Web Development</span>
-                <span class="separator">•</span>
-                <span><i class="ph-fill ph-check-circle"></i> SaaS Platforms</span>
-                <span class="separator">•</span>
-                <span><i class="ph-fill ph-check-circle"></i> ERP Systems</span>
-                <span class="separator">•</span>
-                <span><i class="ph-fill ph-check-circle"></i> POS Solutions</span>
-                <span class="separator">•</span>
-                <span><i class="ph-fill ph-check-circle"></i> Web Development</span>
-                <span class="separator">•</span>
-                <span><i class="ph-fill ph-check-circle"></i> SaaS Platforms</span>
-            </div>
-        </div>
-    </section>
 
-    <!-- Bento Grid About/Skills Section -->
-    <section class="about-bento" id="about">
-        <div class="section-head reveal">
-            <h2 class="section-title">Who I Am</h2>
-            <p class="section-sub">A glance at my background and expertise.</p>
-        </div>
-        
-        <div class="bento-grid">
-            <!-- Box 1: Intro -->
-            <div class="bento-box bento-large reveal">
-                <div class="box-content">
-                    <i class="ph-fill ph-user-circle bento-icon text-gradient"></i>
-                    <h3>Developer & Problem Solver</h3>
-                    <p>I blend creativity with logical architecture. Based in Dhaka, Bangladesh, I've spent years honing my skills in front-end aesthetics and back-end robustness. My goal is to craft tools that help businesses scale effortlessly.</p>
-                </div>
-            </div>
-            
-            <!-- Box 2: Location -->
-            <div class="bento-box bento-small reveal">
-                <div class="box-content center-content">
-                    <i class="ph-fill ph-map-pin bento-icon"></i>
-                    <h4>Based in</h4>
-                    <h3 class="text-gradient">Dhaka, BD</h3>
-                </div>
-            </div>
-
-            <!-- Box 4: Tech Stack -->
-            <div class="bento-box bento-wide reveal">
-                <div class="box-content stack-content">
-                    <div class="stack-header">
-                        <h3>My Tech Stack</h3>
-                        <i class="ph-fill ph-cpu"></i>
-                    </div>
-                    <div class="stack-tags-grid">
-                        <div class="tech-card">
-                            <i class="ph-fill ph-file-code"></i>
-                            <span>JavaScript</span>
-                        </div>
-                        <div class="tech-card">
-                            <i class="ph-fill ph-code-block"></i>
-                            <span>PHP</span>
-                        </div>
-                        <div class="tech-card">
-                            <i class="ph-fill ph-atom"></i>
-                            <span>React</span>
-                        </div>
-                        <div class="tech-card">
-                            <i class="ph-fill ph-database"></i>
-                            <span>MySQL</span>
-                        </div>
-                        <div class="tech-card">
-                            <i class="ph-fill ph-squares-four"></i>
-                            <span>Laravel</span>
-                        </div>
-                        <div class="tech-card">
-                            <i class="ph-fill ph-terminal-window"></i>
-                            <span>Node.js</span>
-                        </div>
-                        <div class="tech-card">
-                            <i class="ph-fill ph-git-branch"></i>
-                            <span>Git</span>
-                        </div>
-                        <div class="tech-card">
-                            <i class="ph-fill ph-wind"></i>
-                            <span>Tailwind</span>
-                        </div>
-                    </div>
-                </div>
+        <!-- Sleek Ticker / Marquee Banner -->
+        <div class="hero-ticker-wrap">
+            <div class="ticker-track">
+                <span><i class="ph-fill ph-circle"></i> Distributed System Architecture</span>
+                <span class="ticker-dot">•</span>
+                <span><i class="ph-fill ph-circle"></i> Real-Time POS Engines</span>
+                <span class="ticker-dot">•</span>
+                <span><i class="ph-fill ph-circle"></i> High-Throughput API Frameworks</span>
+                <span class="ticker-dot">•</span>
+                <span><i class="ph-fill ph-circle"></i> Fault-Tolerant Enterprise Cloud ERP</span>
+                <span class="ticker-dot">•</span>
+                <span><i class="ph-fill ph-circle"></i> Sub-Second Data Sync</span>
+                <span class="ticker-dot">•</span>
+                <span><i class="ph-fill ph-circle"></i> Distributed System Architecture</span>
+                <span class="ticker-dot">•</span>
+                <span><i class="ph-fill ph-circle"></i> Real-Time POS Engines</span>
+                <span class="ticker-dot">•</span>
+                <span><i class="ph-fill ph-circle"></i> High-Throughput API Frameworks</span>
+                <span class="ticker-dot">•</span>
+                <span><i class="ph-fill ph-circle"></i> Fault-Tolerant Enterprise Cloud ERP</span>
+                <span class="ticker-dot">•</span>
+                <span><i class="ph-fill ph-circle"></i> Sub-Second Data Sync</span>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services-modern" id="services">
-        <div class="section-head reveal">
-            <h2 class="section-title">What I Do</h2>
-            <p class="section-sub">Tailored solutions to elevate your business.</p>
+    <!-- Section 1: Engineering Philosophy (Bento Grid) -->
+    <section class="section philosophy-section" id="philosophy">
+        <div class="section-header reveal">
+            <div class="section-badge">
+                <i class="ph-bold ph-cpu"></i>
+                <span>CORE PHILOSOPHY</span>
+            </div>
+            <h2 class="section-title">Engineering Philosophy</h2>
+            <p class="section-subtitle">Resilient architecture, system integrity, and high-velocity clean execution.</p>
         </div>
-        <div class="services-wrapper">
-            <div class="service-card-modern reveal">
-                <div class="srv-icon"><i class="ph-fill ph-code"></i></div>
-                <div class="srv-content">
-                    <h3>Web Applications</h3>
-                    <p>High-performance, reactive frontends paired with secure backends for a flawless user journey.</p>
+
+        <div class="bento-container">
+            <!-- Box 1: Architecture Philosophy -->
+            <div class="bento-card bento-wide reveal">
+                <div class="card-icon-header">
+                    <div class="card-icon cyan-glow">
+                        <i class="ph-bold ph-cpu"></i>
+                    </div>
+                    <div class="card-status-pill">Fault-Tolerant Core</div>
+                </div>
+                <h3 class="bento-title">Fault-Tolerant System Architecture</h3>
+                <p class="bento-desc">
+                    Architecting systems that gracefully degrade under extreme loads. Isolation of critical failure domains, idempotent transaction pipelines, and self-healing cluster orchestration ensure uninterrupted business continuity even during catastrophic network partitioning or database stress.
+                </p>
+                <div class="bento-tags">
+                    <span class="tag">#distributed-systems</span>
+                    <span class="tag">#zero-downtime-deploy</span>
+                    <span class="tag">#event-driven-architecture</span>
+                    <span class="tag">#acid-compliance</span>
                 </div>
             </div>
-            <div class="service-card-modern reveal">
-                <div class="srv-icon"><i class="ph-fill ph-storefront"></i></div>
-                <div class="srv-content">
-                    <h3>POS Systems</h3>
-                    <p>Custom-built Point of Sale software that streamlines inventory, billing, and sales analytics.</p>
+
+            <!-- Box 2: Location & Reach -->
+            <div class="bento-card bento-compact reveal">
+                <div class="card-icon-header">
+                    <div class="card-icon amber-glow">
+                        <i class="ph-bold ph-compass"></i>
+                    </div>
+                    <span class="card-status-pill">Base & Reach</span>
                 </div>
+                <h3 class="bento-title">Dhaka, Bangladesh</h3>
+                <p class="bento-subtitle-accent">Global Remote Collaboration</p>
+                <ul class="reach-list">
+                    <li><i class="ph-fill ph-check-circle"></i> Remote-First System Architect</li>
+                    <li><i class="ph-fill ph-check-circle"></i> High-Impact Global Experience</li>
+                    <li><i class="ph-fill ph-check-circle"></i> 24/7 Production Resilience</li>
+                </ul>
             </div>
-            <div class="service-card-modern reveal">
-                <div class="srv-icon"><i class="ph-fill ph-chart-line-up"></i></div>
-                <div class="srv-content">
-                    <h3>ERP Solutions</h3>
-                    <p>Enterprise Resource Planning to digitize and manage your company's core operational processes.</p>
+
+            <!-- Box 3: Full-Stack Tech Arsenal (Full Width) -->
+            <div class="bento-card bento-full reveal">
+                <div class="arsenal-header">
+                    <div class="arsenal-title-group">
+                        <div class="card-icon emerald-glow">
+                            <i class="ph-bold ph-terminal-window"></i>
+                        </div>
+                        <div>
+                            <h3 class="bento-title">Full-Stack Tech Arsenal</h3>
+                            <p class="bento-subtext">Battle-tested tools, languages, and distributed infrastructure</p>
+                        </div>
+                    </div>
+                    <a href="#case-studies" class="arsenal-link">
+                        <span>See Technical Stack Details</span>
+                        <i class="ph-bold ph-arrow-up-right"></i>
+                    </a>
+                </div>
+
+                <div class="tech-arsenal-grid">
+                    <div class="tech-item">
+                        <i class="ph-bold ph-terminal-window"></i>
+                        <span class="tech-name">Go / Golang</span>
+                        <span class="tech-level">Microservices</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="ph-bold ph-file-code"></i>
+                        <span class="tech-name">TypeScript</span>
+                        <span class="tech-level">Type-Safe Web</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="ph-bold ph-cpu"></i>
+                        <span class="tech-name">Node.js</span>
+                        <span class="tech-level">Event Engines</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="ph-bold ph-squares-four"></i>
+                        <span class="tech-name">Laravel / PHP</span>
+                        <span class="tech-level">Enterprise Core</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="ph-bold ph-code"></i>
+                        <span class="tech-name">Python</span>
+                        <span class="tech-level">Data Pipelines</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="ph-bold ph-atom"></i>
+                        <span class="tech-name">React / Next.js</span>
+                        <span class="tech-level">Reactive UI</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="ph-bold ph-database"></i>
+                        <span class="tech-name">PostgreSQL</span>
+                        <span class="tech-level">ACID Engines</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="ph-bold ph-lightning"></i>
+                        <span class="tech-name">Redis</span>
+                        <span class="tech-level">Sub-ms Cache</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="ph-bold ph-package"></i>
+                        <span class="tech-name">Docker</span>
+                        <span class="tech-level">Containerization</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="ph-bold ph-cloud"></i>
+                        <span class="tech-name">Kubernetes / AWS</span>
+                        <span class="tech-level">Cloud Scale</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section class="portfolio-showcase" id="portfolio">
-        <div class="section-head reveal">
-            <h2 class="section-title">Selected Works</h2>
-            <p class="section-sub">A showcase of digital products I've engineered.</p>
+    <!-- Section 2: Mission-Critical Engineering Pillars -->
+    <section class="section pillars-section" id="pillars">
+        <div class="section-header reveal">
+            <div class="section-badge">
+                <i class="ph-bold ph-shield-check"></i>
+                <span>CORE PILLARS</span>
+            </div>
+            <h2 class="section-title">Mission-Critical Engineering Pillars</h2>
+            <p class="section-subtitle">Specialized software engineering strengths honed across mission-critical enterprise platforms.</p>
         </div>
-        
-        <div class="showcase-grid">
-            <!-- Project 1 -->
-            <div class="showcase-item reveal">
-                <div class="item-img">
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Flynova">
-                    <div class="item-overlay">
-                        <a href="#" class="view-btn"><i class="ph ph-arrow-up-right"></i></a>
-                    </div>
+
+        <div class="pillars-grid">
+            <!-- Pillar 1: Enterprise Web Apps -->
+            <div class="pillar-card reveal">
+                <div class="pillar-icon-box cyan-box">
+                    <i class="ph-bold ph-browsers"></i>
                 </div>
-                <div class="item-info">
-                    <div class="item-meta">
-                        <span class="item-cat">Web App</span>
-                        <span class="item-year">2023</span>
-                    </div>
-                    <h3>Flynova Dashboard</h3>
-                    <p>A comprehensive web application dashboard providing real-time analytics, user management, and detailed reporting features.</p>
-                    <div class="project-tags">
-                        <span>React</span>
-                        <span>Node.js</span>
-                        <span>Tailwind</span>
-                    </div>
+                <h3 class="pillar-title">Scalable Enterprise Web Applications</h3>
+                <p class="pillar-desc">
+                    Engineered for massive concurrency and fault isolation. Deeply optimized database indexing, intelligent multi-tier caching with Redis, and modular micro-monolith architectures designed to support rapid scaling.
+                </p>
+                <div class="pillar-footer">
+                    <span>Architecture</span>
+                    <span class="dot">•</span>
+                    <span>High-Throughput</span>
+                    <span class="dot">•</span>
+                    <span>Distributed Cache</span>
                 </div>
             </div>
-            
-            <!-- Project 2 -->
-            <div class="showcase-item reveal">
-                <div class="item-img">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="School ERP">
-                    <div class="item-overlay">
-                        <a href="#" class="view-btn"><i class="ph ph-arrow-up-right"></i></a>
+
+            <!-- Pillar 2: POS Engines -->
+            <div class="pillar-card reveal">
+                <div class="pillar-icon-box amber-box">
+                    <i class="ph-bold ph-cash-register"></i>
+                </div>
+                <h3 class="pillar-title">Real-Time Point of Sale (POS) Engines</h3>
+                <p class="pillar-desc">
+                    Offline-first resilience engineered for high-frequency retail. Local SQLite cache synchronization, distributed ledger reconciliation, hardware peripheral integrations, and sub-second payment gateway dispatch.
+                </p>
+                <div class="pillar-footer">
+                    <span>Offline-First</span>
+                    <span class="dot">•</span>
+                    <span>Sub-Second Sync</span>
+                    <span class="dot">•</span>
+                    <span>Hardware API</span>
+                </div>
+            </div>
+
+            <!-- Pillar 3: ERP Solutions -->
+            <div class="pillar-card reveal">
+                <div class="pillar-icon-box purple-box">
+                    <i class="ph-bold ph-chart-polar"></i>
+                </div>
+                <h3 class="pillar-title">Enterprise Resource Planning (ERP)</h3>
+                <p class="pillar-desc">
+                    End-to-end operational software orchestrating complex multi-branch retail, automated inventory journals, supply chain workflows, and strict financial accounting reconciliation.
+                </p>
+                <div class="pillar-footer">
+                    <span>Multi-Tenant</span>
+                    <span class="dot">•</span>
+                    <span>Ledger Compliance</span>
+                    <span class="dot">•</span>
+                    <span>Automation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Battle-Tested Engineering Methodology -->
+    <section class="section methodology-section" id="methodology">
+        <div class="section-header reveal">
+            <div class="section-badge">
+                <i class="ph-bold ph-git-commit"></i>
+                <span>ENGINEERING PROCESS</span>
+            </div>
+            <h2 class="section-title">Battle-Tested Engineering Methodology</h2>
+            <p class="section-subtitle">Systematic four-step framework engineered for zero-downtime services, rapid scale, and strict security.</p>
+        </div>
+
+        <div class="methodology-grid">
+            <!-- Step 01 -->
+            <div class="method-card reveal">
+                <div class="method-step-num">01</div>
+                <h3 class="method-title">Domain-Driven Design & Schema Modelling</h3>
+                <p class="method-desc">
+                    Decomposing complex business domains into clean bounded contexts, deterministic data schemas, and normalized entity relationship models.
+                </p>
+                <div class="method-meta">
+                    <i class="ph ph-database"></i> Data Schema First
+                </div>
+            </div>
+
+            <!-- Step 02 -->
+            <div class="method-card reveal">
+                <div class="method-step-num">02</div>
+                <h3 class="method-title">High-Throughput APIs & Event Pipelines</h3>
+                <p class="method-desc">
+                    Crafting sub-50ms RESTful and GraphQL endpoints with asynchronous message broker decoupling (Redis Pub/Sub, Kafka queues).
+                </p>
+                <div class="method-meta">
+                    <i class="ph ph-lightning"></i> Sub-50ms Response
+                </div>
+            </div>
+
+            <!-- Step 03 -->
+            <div class="method-card reveal">
+                <div class="method-step-num">03</div>
+                <h3 class="method-title">High Availability & Chaos Resilience</h3>
+                <p class="method-desc">
+                    Simulating network splits, failover testing, database read-replica balancing, and circuit-breaker patterns for continuous uptime.
+                </p>
+                <div class="method-meta">
+                    <i class="ph ph-shield-check"></i> 99.98% Uptime SLA
+                </div>
+            </div>
+
+            <!-- Step 04 -->
+            <div class="method-card reveal">
+                <div class="method-step-num">04</div>
+                <h3 class="method-title">CI/CD, Containerization & Observability</h3>
+                <p class="method-desc">
+                    Automated testing pipelines, Dockerized deployments, structured JSON telemetry logging, and Prometheus/Grafana real-time metrics.
+                </p>
+                <div class="method-meta">
+                    <i class="ph ph-activity"></i> Full Telemetry
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Featured Case Studies -->
+    <section class="section case-studies-section" id="case-studies">
+        <div class="section-header reveal">
+            <div class="section-badge">
+                <i class="ph-bold ph-terminal-window"></i>
+                <span>FEATURED CASE STUDIES</span>
+            </div>
+            <h2 class="section-title">Featured Case Studies</h2>
+            <p class="section-subtitle">High-impact, production-tested architectures designed, developed, and deployed.</p>
+        </div>
+
+        <div class="case-studies-list">
+            <!-- Project 1: Flynova Enterprise Suite -->
+            <div class="case-card reveal">
+                <div class="case-media">
+                    <div class="mockup-frame">
+                        <div class="mockup-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="mockup-title">flynova-enterprise.internal // v4.2-prod</span>
+                        </div>
+                        <img src="project-flynova.jpg" alt="Flynova Enterprise ERP Dashboard" class="case-img">
                     </div>
                 </div>
-                <div class="item-info">
-                    <div class="item-meta">
-                        <span class="item-cat">SaaS Platform</span>
-                        <span class="item-year">2022</span>
+                <div class="case-details">
+                    <div class="case-tag-row">
+                        <span class="case-cat-badge">ENTERPRISE COMMERCE / ERP</span>
+                        <span class="case-year">2024</span>
                     </div>
-                    <h3>School ERP System</h3>
-                    <p>An enterprise resource planning system tailored for educational institutions to manage students, payroll, and grading.</p>
-                    <div class="project-tags">
+                    <h3 class="case-heading">Flynova Enterprise Suite</h3>
+                    <p class="case-summary">
+                        Cloud-native ERP platform architected for a multi-million-dollar retail operation. Features real-time stock orchestration across 30+ physical stores, sub-second sync, and audit-proof accounting.
+                    </p>
+                    <div class="case-tech-pills">
                         <span>Laravel</span>
                         <span>Vue.js</span>
+                        <span>Redis</span>
+                        <span>PostgreSQL</span>
+                    </div>
+                    <a href="#contact" class="case-cta-btn">
+                        <span>Read Architecture Case Study</span>
+                        <i class="ph-bold ph-arrow-up-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2: EduCore ERP Ecosystem -->
+            <div class="case-card reverse reveal">
+                <div class="case-media">
+                    <div class="mockup-frame">
+                        <div class="mockup-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="mockup-title">educore-platform.cloud // analytics-engine</span>
+                        </div>
+                        <img src="project-educore.jpg" alt="EduCore ERP Ecosystem Laptop Preview" class="case-img">
+                    </div>
+                </div>
+                <div class="case-details">
+                    <div class="case-tag-row">
+                        <span class="case-cat-badge badge-edu">EDUCATION ERP / SAAS</span>
+                        <span class="case-year">2023</span>
+                    </div>
+                    <h3 class="case-heading">EduCore ERP Ecosystem</h3>
+                    <p class="case-summary">
+                        End-to-end educational management platform managing 50,000+ active students and academic staff. Engineered with multi-tenant architecture and dynamic campus operations.
+                    </p>
+                    <div class="case-tech-pills">
+                        <span>React</span>
+                        <span>Node.js</span>
                         <span>MySQL</span>
+                        <span>TypeScript</span>
+                    </div>
+                    <a href="#contact" class="case-cta-btn">
+                        <span>Explore Architecture Breakdown</span>
+                        <i class="ph-bold ph-arrow-up-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3: Apex POS Pro Terminal -->
+            <div class="case-card reveal">
+                <div class="case-media">
+                    <div class="mockup-frame">
+                        <div class="mockup-bar">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="mockup-title">apex-pos-core // hardware-driver-v2</span>
+                        </div>
+                        <img src="project-pos.jpg" alt="Apex POS Pro Countertop Terminal" class="case-img">
+                    </div>
+                </div>
+                <div class="case-details">
+                    <div class="case-tag-row">
+                        <span class="case-cat-badge badge-pos">RETAIL / MISSION-CRITICAL / POS</span>
+                        <span class="case-year">2023</span>
+                    </div>
+                    <h3 class="case-heading">Apex POS Pro Terminal</h3>
+                    <p class="case-summary">
+                        High-reliability, cloud-syncing offline-first POS engine built for high-traffic food & beverage and retail environments. Zero downtime with automated offline queue syncing.
+                    </p>
+                    <div class="case-tech-pills">
+                        <span>Electron</span>
+                        <span>React</span>
+                        <span>SQLite/Embedded</span>
+                        <span>Hardware API</span>
+                    </div>
+                    <a href="#contact" class="case-cta-btn">
+                        <span>Inspect Architecture & Features</span>
+                        <i class="ph-bold ph-arrow-up-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Career Milestones & Experience -->
+    <section class="section experience-section" id="experience">
+        <div class="section-header reveal">
+            <div class="section-badge">
+                <i class="ph-bold ph-briefcase"></i>
+                <span>CAREER TIMELINE</span>
+            </div>
+            <h2 class="section-title">Career Milestones & Experience</h2>
+            <p class="section-subtitle">Leading technical delivery, system architecture, and mentoring high-performing teams.</p>
+        </div>
+
+        <div class="timeline-container">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-top">
+                        <div>
+                            <h3 class="timeline-role">Principal Software Architect</h3>
+                            <div class="timeline-company">Enterprise Scale Systems Ltd</div>
+                        </div>
+                        <span class="timeline-date-badge active-role">2023 — Present</span>
+                    </div>
+                    <p class="timeline-desc">
+                        Spearheaded enterprise architectural redesign of distributed retail SaaS and ERP engines. Reduced median API latency by 45% and scaled microservices to handle millions of daily transactional events.
+                    </p>
+                    <div class="timeline-tags">
+                        <span>System Design</span>
+                        <span>Cloud Arch</span>
+                        <span>Redis</span>
+                        <span>Docker</span>
+                        <span>Laravel</span>
                     </div>
                 </div>
             </div>
-            
-            <!-- Project 3 -->
-            <div class="showcase-item reveal">
-                <div class="item-img">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="POS System">
-                    <div class="item-overlay">
-                        <a href="#" class="view-btn"><i class="ph ph-arrow-up-right"></i></a>
+
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-top">
+                        <div>
+                            <h3 class="timeline-role">Lead Full Stack & Systems Architect</h3>
+                            <div class="timeline-company">Smart Software Ltd</div>
+                        </div>
+                        <span class="timeline-date-badge">2021 — 2023</span>
+                    </div>
+                    <p class="timeline-desc">
+                        Architected multi-tenant POS and inventory solutions deployed across 100+ business clients. Led a team of 8 engineers, instilling CI/CD best practices and automated testing.
+                    </p>
+                    <div class="timeline-tags">
+                        <span>Vue.js</span>
+                        <span>PHP / Laravel</span>
+                        <span>MySQL</span>
+                        <span>AWS</span>
+                        <span>REST APIs</span>
                     </div>
                 </div>
-                <div class="item-info">
-                    <div class="item-meta">
-                        <span class="item-cat">Business Solution</span>
-                        <span class="item-year">2021</span>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-top">
+                        <div>
+                            <h3 class="timeline-role">Full-Stack Software Engineer</h3>
+                            <div class="timeline-company">Digital Tech Solutions</div>
+                        </div>
+                        <span class="timeline-date-badge">2019 — 2021</span>
                     </div>
-                    <h3>NextGen POS</h3>
-                    <p>A fast, scalable Point of Sale system with inventory tracking, barcode scanning, and daily sales report generation.</p>
-                    <div class="project-tags">
-                        <span>Electron</span>
+                    <p class="timeline-desc">
+                        Developed reactive web applications, high-performance customer portals, and database migration pipelines for enterprise clients.
+                    </p>
+                    <div class="timeline-tags">
                         <span>React</span>
-                        <span>Firebase</span>
+                        <span>Node.js</span>
+                        <span>MongoDB</span>
+                        <span>Git</span>
+                        <span>PHP</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact-modern" id="contact">
-        <div class="contact-box reveal">
-            <div class="contact-text">
-                <h2 class="section-title">Ready to start?</h2>
-                <p>Let's turn your idea into a stunning reality. Drop a message and I'll get back to you immediately.</p>
-                
-                <div class="contact-methods">
-                    <div class="method">
-                        <div class="m-icon"><i class="ph-fill ph-envelope-simple"></i></div>
-                        <div>
-                            <span>Email me at</span>
-                            <h4>hello@nabid.dev</h4>
-                        </div>
-                    </div>
-                    <div class="method">
-                        <div class="m-icon"><i class="ph-fill ph-phone-call"></i></div>
-                        <div>
-                            <span>Call me at</span>
-                            <h4>+880 1234 567 890</h4>
-                        </div>
+    <!-- Section 6: Client Endorsements -->
+    <!-- <section class="section endorsements-section" id="endorsements">
+        <div class="section-header reveal">
+            <div class="section-badge">
+                <i class="ph-bold ph-quotes"></i>
+                <span>CLIENT ENDORSEMENTS</span>
+            </div>
+            <h2 class="section-title">Client Endorsements</h2>
+            <p class="section-subtitle">Feedback from engineering leaders, executives, and enterprise partners.</p>
+        </div>
+
+        <div class="endorsements-grid">
+           
+            <div class="endorsement-card reveal">
+                <div class="stars-row">
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                    <span class="rating-text">5.0 RATING</span>
+                </div>
+                <p class="review-text">
+                    "Nabid's architectural insight saved our retail chain months of development. The POS engine he designed handles thousands of transactions seamlessly without a single hiccup."
+                </p>
+                <div class="client-info">
+                    <div class="client-avatar avatar-cyan">TR</div>
+                    <div class="client-meta">
+                        <div class="client-name">Tanvir Rahman</div>
+                        <div class="client-role">Managing Director, RetailMax Global</div>
                     </div>
                 </div>
             </div>
-            
-            <div class="contact-form">
-                <form action="contact.php" method="POST">
-                    <div class="input-group">
-                        <input type="text" name="name" placeholder="Name" required>
+
+         
+            <div class="endorsement-card reveal">
+                <div class="stars-row">
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                    <span class="rating-text">5.0 RATING</span>
+                </div>
+                <p class="review-text">
+                    "One of the sharpest full-stack minds I've worked with. His ERP architecture simplified our operational chaos into an elegant, automated workflow."
+                </p>
+                <div class="client-info">
+                    <div class="client-avatar avatar-amber">MH</div>
+                    <div class="client-meta">
+                        <div class="client-name">Mahmudul Hasan</div>
+                        <div class="client-role">Chief Technology Officer, NextEra Corp</div>
                     </div>
-                    <div class="input-group">
-                        <input type="email" name="email" placeholder="Email" required>
+                </div>
+            </div>
+
+        
+            <div class="endorsement-card reveal">
+                <div class="stars-row">
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                    <i class="ph-fill ph-star"></i>
+                    <span class="rating-text">5.0 RATING</span>
+                </div>
+                <p class="review-text">
+                    "Delivered our educational platform on-time and with flawless performance. Even during peak exam enrollment surges, the system maintained sub-100ms response times."
+                </p>
+                <div class="client-info">
+                    <div class="client-avatar avatar-purple">SA</div>
+                    <div class="client-meta">
+                        <div class="client-name">Dr. Sarah Al-Amin</div>
+                        <div class="client-role">Academic Director, GlobalEdu Network</div>
                     </div>
-                    <div class="input-group">
-                        <select name="subject" required>
-                            <option value="" disabled selected>What do you need?</option>
-                            <option value="Web Development">Web Development</option>
-                            <option value="ERP System">ERP System</option>
-                            <option value="POS System">POS System</option>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Section 7: Contact / Architecture Inquiry -->
+    <section class="section contact-section" id="contact">
+        <div class="contact-box-container reveal">
+            <div class="contact-left">
+                <div class="section-badge badge-contact">
+                    <i class="ph-bold ph-chat-circle-dots"></i>
+                    <span>GET IN TOUCH</span>
+                </div>
+                <h2 class="contact-title">Have a vision or complex system to build?</h2>
+                <p class="contact-desc">
+                    Open for senior architectural roles, high-scale engineering consultations, and enterprise contracts. Let's discuss your system requirements.
+                </p>
+
+                <div class="contact-methods-list">
+                    <div class="contact-method-item">
+                        <div class="method-icon-wrap cyan-icon">
+                            <i class="ph-fill ph-envelope-simple"></i>
+                        </div>
+                        <div>
+                            <span class="method-label">Direct Email</span>
+                            <a href="mailto:nabidahmadzidan@gmail.com" class="method-val">nabidahmad.zidan@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-method-item">
+                        <div class="method-icon-wrap amber-icon">
+                            <i class="ph-fill ph-phone-call"></i>
+                        </div>
+                        <div>
+                            <span class="method-label">Direct Phone / WhatsApp</span>
+                            <a href="tel:+8801832949448" class="method-val">+880 1303 365662</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-method-item">
+                        <div class="method-icon-wrap purple-icon">
+                            <i class="ph-fill ph-map-pin"></i>
+                        </div>
+                        <div>
+                            <span class="method-label">Headquarters / Location</span>
+                            <span class="method-val">Dhaka, Bangladesh (Remote Worldwide)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-socials-row">
+                    <a href="https://github.com" target="_blank" rel="noopener" class="contact-social-btn" title="GitHub"><i class="ph ph-github-logo"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-social-btn" title="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="mailto:nabidahmadzidan@gmail.com" class="contact-social-btn" title="Email"><i class="ph ph-envelope-simple"></i></a>
+                </div>
+            </div>
+
+            <div class="contact-right">
+                <form action="contact.php" method="POST" class="inquiry-form" id="inquiry-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="form-name">Your Name</label>
+                            <input type="text" id="form-name" name="name" placeholder="e.g. Alexander Vance" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="form-email">Your Work Email</label>
+                            <input type="email" id="form-email" name="email" placeholder="e.g. alex@enterprise.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-subject">Project Type & Ecosystem Architecture</label>
+                        <select id="form-subject" name="subject" required>
+                            <option value="" disabled selected>Select System Scope...</option>
+                            <option value="Enterprise ERP Architecture">Enterprise ERP Architecture</option>
+                            <option value="High-Throughput POS Engine">High-Throughput POS Engine</option>
+                            <option value="Cloud Distributed Web Application">Cloud Distributed Web Application</option>
+                            <option value="System Audit & Optimization">System Audit & Optimization</option>
+                            <option value="Senior / Principal Role Inquiry">Senior / Principal Role Inquiry</option>
                         </select>
                     </div>
-                    <div class="input-group">
-                        <textarea name="message" rows="4" placeholder="Tell me about your project..." required></textarea>
+
+                    <div class="form-group">
+                        <label for="form-message">Project Specifications & Objectives</label>
+                        <textarea id="form-message" name="message" rows="4" placeholder="Describe your throughput requirements, tech preferences, and timeline..." required></textarea>
                     </div>
-                    <button type="submit" class="btn-primary w-100">Send Message <i class="ph ph-paper-plane-tilt"></i></button>
+
+                    <button type="submit" class="btn-submit-inquiry">
+                        <span>Send Architecture Inquiry</span>
+                        <i class="ph-bold ph-arrow-up-right"></i>
+                    </button>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer-modern" style="padding: 20px 5%;">
-        <div class="f-bottom" style="border-top: none; padding-top: 0;">
-            <p>&copy; 2026 Nabid Ahmad Zidan</p>
+    <footer class="footer-modern">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo-icon-box small">
+                    <i class="ph-bold ph-brackets-curly"></i>
+                </div>
+                <span class="footer-name">NABID AHMAD ZIDAN</span>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#home">Overview</a>
+                <a href="#philosophy">Philosophy</a>
+                <a href="#pillars">Pillars</a>
+                <a href="#methodology">Methodology</a>
+                <a href="#case-studies">Case Studies</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <div class="footer-bottom-row">
+                <p>&copy; 2026 Nabid Ahmad Zidan. All rights reserved. Architected for scale.</p>
+                <a href="#home" class="back-to-top" title="Back to top">
+                    <span>Back to Top</span>
+                    <i class="ph-bold ph-arrow-up"></i>
+                </a>
+            </div>
         </div>
     </footer>
 
-    <!-- Vanilla Tilt for 3D Hover Effects -->
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script src="script.js"></script>
 </body>
