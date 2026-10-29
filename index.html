@@ -273,54 +273,63 @@
 
                 <div class="tech-arsenal-grid">
                     <div class="tech-item">
-                        <i class="ph-bold ph-terminal-window"></i>
-                        <span class="tech-name">Go / Golang</span>
-                        <span class="tech-level">Microservices</span>
+                        <i class="ph-bold ph-code"></i>
+                        <span class="tech-name">Python / Django</span>
+                        <span class="tech-level">Backend Framework & MVC</span>
                     </div>
+
                     <div class="tech-item">
-                        <i class="ph-bold ph-file-code"></i>
-                        <span class="tech-name">TypeScript</span>
-                        <span class="tech-level">Type-Safe Web</span>
+                        <i class="ph-bold ph-database"></i>
+                        <span class="tech-name">MySQL / PostgreSQL</span>
+                        <span class="tech-level">Relational DB & SQL Queries</span>
                     </div>
+
                     <div class="tech-item">
-                        <i class="ph-bold ph-cpu"></i>
-                        <span class="tech-name">Node.js</span>
-                        <span class="tech-level">Event Engines</span>
+                        <i class="ph-bold ph-hard-drives"></i>
+                        <span class="tech-name">Database Management</span>
+                        <span class="tech-level">Optimization & Schema Design</span>
                     </div>
+
                     <div class="tech-item">
                         <i class="ph-bold ph-squares-four"></i>
                         <span class="tech-name">Laravel / PHP</span>
-                        <span class="tech-level">Enterprise Core</span>
+                        <span class="tech-level">Enterprise Core Systems</span>
                     </div>
+
                     <div class="tech-item">
-                        <i class="ph-bold ph-code"></i>
-                        <span class="tech-name">Python</span>
-                        <span class="tech-level">Data Pipelines</span>
+                        <i class="ph-bold ph-git-branch"></i>
+                        <span class="tech-name">Git / GitHub</span>
+                        <span class="tech-level">Version Control & CI/CD</span>
                     </div>
+
                     <div class="tech-item">
-                        <i class="ph-bold ph-atom"></i>
-                        <span class="tech-name">React / Next.js</span>
-                        <span class="tech-level">Reactive UI</span>
+                        <i class="ph-bold ph-plugs-connected"></i>
+                        <span class="tech-name">REST API</span>
+                        <span class="tech-level">Secure Endpoints & Services</span>
                     </div>
+
                     <div class="tech-item">
-                        <i class="ph-bold ph-database"></i>
+                        <i class="ph-bold ph-cylinder"></i>
                         <span class="tech-name">PostgreSQL</span>
-                        <span class="tech-level">ACID Engines</span>
+                        <span class="tech-level">ACID Engines & Schemas</span>
                     </div>
+
                     <div class="tech-item">
                         <i class="ph-bold ph-lightning"></i>
                         <span class="tech-name">Redis</span>
-                        <span class="tech-level">Sub-ms Cache</span>
+                        <span class="tech-level">Sub-ms Cache & Queues</span>
                     </div>
+
                     <div class="tech-item">
                         <i class="ph-bold ph-package"></i>
                         <span class="tech-name">Docker</span>
-                        <span class="tech-level">Containerization</span>
+                        <span class="tech-level">Containerization & Deploy</span>
                     </div>
+
                     <div class="tech-item">
-                        <i class="ph-bold ph-cloud"></i>
-                        <span class="tech-name">Kubernetes / AWS</span>
-                        <span class="tech-level">Cloud Scale</span>
+                        <i class="ph-bold ph-browsers"></i>
+                        <span class="tech-name">HTML / CSS</span>
+                        <span class="tech-level">Responsive Web Layouts</span>
                     </div>
                 </div>
             </div>
@@ -741,7 +750,7 @@
                         </div>
                         <div>
                             <span class="method-label">Direct Email</span>
-                            <a href="mailto:nabidahmadzidan@gmail.com" class="method-val">nabidahmad.zidan@gmail.com</a>
+                            <a href="mailto:nabidahmad.zidan@gmail.com" class="method-val">nabidahmad.zidan@gmail.com</a>
                         </div>
                     </div>
 
@@ -769,12 +778,16 @@
                 <div class="contact-socials-row">
                     <a href="https://github.com" target="_blank" rel="noopener" class="contact-social-btn" title="GitHub"><i class="ph ph-github-logo"></i></a>
                     <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-social-btn" title="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
-                    <a href="mailto:nabidahmadzidan@gmail.com" class="contact-social-btn" title="Email"><i class="ph ph-envelope-simple"></i></a>
+                    <a href="mailto:nabidahmad.zidan@gmail.com" class="contact-social-btn" title="Email"><i class="ph ph-envelope-simple"></i></a>
                 </div>
             </div>
 
             <div class="contact-right">
-                <form action="contact.php" method="POST" class="inquiry-form" id="inquiry-form">
+                <form action="https://formsubmit.co/nabidahmad.zidan@gmail.com" method="POST" class="inquiry-form" id="inquiry-form">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_subject" value="New Architecture Inquiry from Portfolio">
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="form-name">Your Name</label>
@@ -803,10 +816,11 @@
                         <textarea id="form-message" name="message" rows="4" placeholder="Describe your throughput requirements, tech preferences, and timeline..." required></textarea>
                     </div>
 
-                    <button type="submit" class="btn-submit-inquiry">
+                    <button type="submit" class="btn-submit-inquiry" id="submit-btn">
                         <span>Send Architecture Inquiry</span>
                         <i class="ph-bold ph-arrow-up-right"></i>
                     </button>
+                    <div id="form-status" class="form-status-msg" style="display: none;"></div>
                 </form>
             </div>
         </div>

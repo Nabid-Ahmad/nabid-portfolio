@@ -159,4 +159,62 @@ document.addEventListener('DOMContentLoaded', () => {
             scale: 1.01
         });
     }
+
+    // ==========================================================================
+    // 7. Contact Form AJAX Submission (Vercel & Static Friendly)
+    // ==========================================================================
+    const contactForm = document.getElementById('inquiry-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formStatus = document.getElementById('form-status');
+
+    if (contactForm && submitBtn) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const originalBtnHTML = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Sending Message...</span> <i class="ph-bold ph-spinner ph-spin"></i>';
+
+            if (formStatus) {
+                formStatus.style.display = 'none';
+                formStatus.className = 'form-status-msg';
+            }
+
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch('https://formsubmit.co/ajax/nabidahmad.zidan@gmail.com', {
+                    method: 'POST',
+                    headers: { 
+                        'Accept': 'application/json'
+                    },
+                    body: formData
+                });
+
+                if (response.ok) {
+                    contactForm.reset();
+                    submitBtn.innerHTML = '<span>Message Sent Successfully!</span> <i class="ph-bold ph-check"></i>';
+                    submitBtn.style.background = 'var(--emerald-primary)';
+                    if (formStatus) {
+                        formStatus.innerText = 'Thank you! Your message has been sent successfully. I will get back to you shortly.';
+                        formStatus.classList.add('success');
+                        formStatus.style.display = 'block';
+                    }
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnHTML;
+                        submitBtn.style.background = '';
+                    }, 5000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHTML;
+                if (formStatus) {
+                    formStatus.innerText = 'Oops! Could not send message automatically. Please email directly at nabidahmad.zidan@gmail.com';
+                    formStatus.classList.add('error');
+                    formStatus.style.display = 'block';
+                }
+            }
+        });
+    }
 });

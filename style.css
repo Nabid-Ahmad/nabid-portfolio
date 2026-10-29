@@ -851,7 +851,7 @@ button, input, select, textarea {
 .hero-ticker-wrap {
     width: 100%;
     overflow: hidden;
-    padding: 18px 0;
+    padding: 12px 0;
     background: rgba(10, 16, 28, 0.6);
     border-top: 1px solid var(--border-subtle);
     border-bottom: 1px solid var(--border-subtle);
@@ -901,7 +901,7 @@ button, input, select, textarea {
    Section Layouts & Reusable Elements
    ========================================================================== */
 .section {
-    padding: 110px 24px;
+    padding: 60px 24px;
     max-width: var(--container-max);
     margin: 0 auto;
     position: relative;
@@ -910,7 +910,7 @@ button, input, select, textarea {
 .section-header {
     text-align: center;
     max-width: 680px;
-    margin: 0 auto 64px auto;
+    margin: 0 auto 40px auto;
 }
 
 .section-badge {
@@ -1120,11 +1120,18 @@ button, input, select, textarea {
     font-weight: 600;
     border-bottom: 1px dashed var(--cyan-primary);
     padding-bottom: 2px;
+    transition: all 0.3s ease;
+}
+
+.arsenal-link:hover {
+    gap: 12px;
+    color: var(--cyan-bright);
+    border-bottom-style: solid;
 }
 
 .tech-arsenal-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 14px;
 }
 
@@ -1132,35 +1139,43 @@ button, input, select, textarea {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    padding: 16px;
+    padding: 20px 18px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    transition: all 0.3s ease;
+    gap: 8px;
+    transition: all 0.25s ease;
 }
 
 .tech-item:hover {
-    border-color: var(--cyan-primary);
-    background: var(--cyan-surface);
+    border-color: var(--border-highlight);
+    background: var(--bg-card-hover);
     transform: translateY(-2px);
+    box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.4);
 }
 
 .tech-item i {
-    font-size: 1.6rem;
+    font-size: 1.65rem;
     color: var(--cyan-primary);
+    transition: transform 0.25s ease;
+}
+
+.tech-item:hover i {
+    transform: scale(1.08);
 }
 
 .tech-name {
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     color: var(--text-primary);
+    margin-top: 2px;
 }
 
 .tech-level {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
     font-weight: 500;
+    line-height: 1.4;
 }
 
 /* ==========================================================================
@@ -1923,6 +1938,32 @@ button, input, select, textarea {
     color: #FFFFFF;
 }
 
+.form-status-msg {
+    margin-top: 14px;
+    padding: 12px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.5;
+    animation: fadeIn 0.3s ease;
+}
+
+.form-status-msg.success {
+    background: var(--emerald-surface);
+    color: var(--emerald-bright);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.form-status-msg.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: #F87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+[data-theme="light"] .form-status-msg.success {
+    color: var(--emerald-primary);
+}
+
 /* ==========================================================================
    Footer
    ========================================================================== */
@@ -2086,9 +2127,25 @@ button, input, select, textarea {
     .contact-box-container {
         grid-template-columns: 1fr;
     }
+
+    .section {
+        padding: 50px 20px;
+    }
+
+    .section-header {
+        margin: 0 auto 32px auto;
+    }
 }
 
 @media (max-width: 768px) {
+    .section {
+        padding: 40px 16px;
+    }
+
+    .section-header {
+        margin: 0 auto 28px auto;
+    }
+
     .nav-links {
         position: fixed;
         top: var(--nav-height);
